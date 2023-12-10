@@ -1,2 +1,39 @@
 spring:
-  port: 5000
+  application:
+    name: workflow-service
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+    deserialization:
+      fail-on-unknown-properties: false
+  mvc:
+    throw-exception-if-no-handler-found: true
+  jpa:
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        id:
+          new_id_generator_mappings: false
+        format_sql: true
+    open-in-view: false
+    hibernate:
+      ddl-auto: none
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+logging:
+  level:
+    root: INFO
+    org:
+      springframework:
+        web: INFO
+    hibernate:
+      ERROR: WARN
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%X{correlationId}] [%X{device_id}] [%t] %-5level %logger{36} - %msg%n"
+
+server:
+  port: 5012
+  servlet:
+    context-path: /workflow/v2
